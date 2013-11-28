@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/base.css"/>
+        <title>Comfortably Numbered</title>
+        <meta name="description" content="Hardmath123's blog."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <script>
+            window.addEventListener(
+                "load",
+                function() {
+                    if (window.localStorage) {
+                        [].forEach.call(
+                            document.getElementsByClassName("postlinks"),
+                            function(el) {
+                                var id = "post-"+el.dataset.id;
+                                if (localStorage[id]) {
+                                    el.className += " visitedposts";
+                                }
+                            }
+                        );
+                    }
+            });
+        </script>
+    </head>
+    
+    <body>
+        {% include "header.html" %}
+        <div id="postlist">
+        <div>
+            <a href="/feed"><img src="/static/feed-icon.png" width="15" height="15"/></a>
+            &middot;
+            <div class="g-plusone" data-size="small" data-href="http://comfortablynumbered.appspot.com/"></div>
+        </div>
+        <br/>
+            {% for post in posts %}
+             <strong class="postlinks" data-id="{{ post.key().id() }}" style="float:left;"><a href="/post/{{ post.key().id() }}">{{ post.title }}</a> </strong>&nbsp;
+
+
+             <small style="float:right;">{{ post.dateposted.strftime("%m/%d/%y") }}</small>
+             <div class="clearer"></div>
+            <p>{{post.description | striptags}} <small>(<a href="/post/{{ post.key().id() }}">more</a>)</small></p><br/><br/>
+            {% endfor %}
+            
+            <div id="pagesbox">
+                {% if offset > 0 %} <a style="text-decoration:none;" href="/?page={{ offset - limit }}&limit={{ limit }}">&larr; Newer</a>
+                &nbsp; &middot; &nbsp;
+                {% endif %}
+                {% if offset + limit < count %} <a style="text-decoration:none;" href="/?page={{ offset + limit }}&limit={{ limit }}">Older &rarr;</a>
+                {% endif %}
+            </div>
+        
+        <div id="whoami">
+            <h2><code>$(whoami)</code></h2>
+
+            <p class="dropcap">I am a geek. When not getting staring at math problems or messy JavaScript, I&apos;m producing, consuming, or criticizing music. Hardmath123 is my alias on the internet.<sup>[<a href="https://github.com/Hardmath123">1</a>] [<a href="http://scratch.mit.edu/users/Hardmath123">2</a>]</sup>
+
+            <h2><code>$(whereami)</code></h2>
+            <p>This blog is an attempt to archive math problems and other miscellaneous geekeries I come across once in a while.
+
+            <blockquote><em>I'm not tryin' to cause a big s-s-sensation,<br/><br/>I'm just bloggin' 'bout my g-g-generation.</em></blockquote>
+
+            <h2><code>ping $ME</code></h2>
+            <p>The easiest way to reach me is by posting a comment on any of the blog posts.
+        </div>
+        
+        {% include "footer.html" %}
+        </div>
+        <script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+    </body>
+</html>

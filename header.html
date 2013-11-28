@@ -1,0 +1,16 @@
+<div id="header">
+    <h1>
+        <a href="/">Comfortably Numbered</a>
+    </h1>
+    <div id="loginbox">
+        {% if currentuser %}
+        Welcome, {{ currentuser }}. <a href="{{ logouturl }}" class="actionbutton">Log out</a>
+        {% if admin %}
+        <a href="/new" class="actionbutton">+ New Post</a>
+        {% endif %}
+        {% else %}
+        <a href="{{ loginurl }}" class="actionbutton">Log in</a> with Google to post, comment, and more.
+        {% endif %}
+    </div>
+    <div class="clearer"></div>
+</div>

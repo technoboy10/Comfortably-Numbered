@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/base.css"/>
+        <title>{% if editing %} Edit {% else %} New {% endif %} Post | Comfortably Numbered</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    </head>
+    <body>
+        {% include "header.html" %}
+        <div id="postlist">
+            <h2>{% if editing %} Edit {% else %} New {% endif %} Post</h2>
+            <p>You can use HTML in the post. Use the <code>dropcap</code> class on the first paragraph.</p>
+            <form method="post" action="create">
+                {% if editing %}
+                    <input type="hidden" name="editid" value="{{ editid }}"/>
+                {% endif %}
+                <input type="text" name="title" style="width:80%;" placeholder="Title" autofocus
+                {% if editing %}
+                value="{{ editpost.title }}"
+                {% endif %}/>
+
+                <input type="text" name="description" style="width:80%;" placeholder="Description"
+                {% if editing %}
+                value="{{ editpost.description }}"
+                {% endif %}/>
+
+                <br/>
+                <textarea name="content" style="width:80%; height:200px;" placeholder="Lorem ipsum dolores sit amet.">{% if editing %}{{ editpost.content }}{% endif %}</textarea>
+                <br/>
+                <input type="submit" value="Submit" style="width:80%;"/>
+            </form>
+            {% include "footer.html" %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,332 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,700);
+
+body {
+  font-family: "Open Sans", "Helvetica", Arial sans-serif;
+  font-weight: 100;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  color: black;
+  height: 30px;
+}
+
+p {
+  text-indent: 20px;
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+}
+
+q:before {
+  content: open-quote;
+}
+
+q:after {
+  content: close-quote;
+}
+
+strong a {
+  text-decoration: none;
+  color: black;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+strong a:visited {
+  color: black;
+}
+
+a {
+  color: #559;
+}
+
+a:hover {
+  color: #77A;
+}
+
+a:active {
+  color: darkgray;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #559;
+}
+
+a:visited:hover {
+  color: #77A;
+}
+
+strong.visitedposts a {
+  color: gray;
+}
+
+#header {
+  padding: 10px;
+  background-image: -webkit-gradient(linear, top left, bottom left, from(#f9f9f9), to(#f3f3f3));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #f3f3f3);
+  background-image: linear-gradient(top, #f9f9f9, #f3f3f3);
+  -webkit-box-shadow: 0px 2px 5px #ddd;
+  box-shadow: 0px 2px 5px #ddd;
+  overflow: hidden;
+}
+
+#header h1 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  -webkit-transition: text-shadow 0.2s;
+  transition: text-shadow 0.2s;
+  text-shadow: none;
+  letter-spacing: 3px;
+  word-spacing: 2px;
+  display: block;
+  float: left;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 26px;
+  height: 30px;
+  white-space: nowrap;
+}
+
+#header h1 a {
+  text-decoration: none;
+  color: black;
+}
+
+#header h1:hover {
+  -webkit-transition: text-shadow 0.2s ease-in-out;
+  transition: text-shadow 0.2s ease-in-out;
+  text-shadow: 0 0 5px #F66;
+  cursor: pointer;
+}
+
+#header #loginbox {
+  display: table-cell;
+  line-height: 30px;
+  float: right;
+  height: 30px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100;
+}
+
+.clearer {
+  clear: both;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+#footer {
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 100px;
+  font-size: 12px;
+  color: gray;
+}
+
+#postlist {
+  -margin-left: 10px;
+  -margin-right: 10px;
+  padding: 30px;
+  width: 50%;
+  min-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pagesbox {
+  text-align: center;
+}
+
+#whoami {
+  padding: 30px;
+  margin-top: 10px;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  width: 80%;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  color: gray;
+}
+
+#whoami h2 {
+  font-size: 16px;
+}
+
+.dropcap:first-letter {
+  font-size: 30px;
+  font-family: "Didot", "Baskerville", "Garamond", serif;
+  color: #666;
+}
+
+strong a {
+  color: black;
+}
+
+.comment {
+  margin-bottom: 30px;
+}
+
+* {
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+textarea,
+input[type=text] {
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  -webkit-box-shadow: 0 0 0px #CCC;
+  box-shadow: 0 0 0px #CCC;
+  border-style: solid;
+  border-color: #EEE;
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  resize: none;
+}
+
+textarea:focus,
+input[type=text]:focus {
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  outline: none;
+  -webkit-box-shadow: 0 0 4px lightblue;
+  box-shadow: 0 0 4px lightblue;
+}
+
+a.actionbutton {
+  white-space: nowrap;
+  display: inline;
+  margin: 5px;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  background-color: #FFF;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  border-style: none;
+  -webkit-box-shadow: 0 0 2px black;
+  box-shadow: 0 0 2px black;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: 100;
+  text-decoration: none;
+  color: black;
+  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(255, 255, 255, 0.1)), to(rgba(0, 0, 0, 0.1)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+}
+
+a.actionbutton:hover {
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  -webkit-box-shadow: 0 0 4px black;
+  box-shadow: 0 0 4px black;
+  cursor: pointer;
+  color: #77A;
+}
+
+a.actionbutton:active {
+  background-color: #EDC;
+}
+
+a.actionbutton.destructive {
+  background-color: #E8A5B0 !important;
+}
+
+input[type=submit] {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  background-color: #bcefb6;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-box-shadow: 0 0 0px #CCC;
+  box-shadow: 0 0 0px #CCC;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: 100;
+  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(255, 255, 255, 0.1)), to(rgba(0, 0, 0, 0.1)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+}
+
+input[type=submit]:hover {
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  -webkit-box-shadow: 0 0 5px #CCC;
+  box-shadow: 0 0 5px #CCC;
+}
+
+#charcounter {
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+
+.identicon {
+  margin-right: 10px;
+  background-color: #eee;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.identicon-cell {
+  width: 20%;
+  height: 20%;
+  float: left;
+}
+
+blockquote {
+  word-wrap:break-word;
+  -webkit-hyphens:auto;
+  -moz-hyphens:auto;
+  hyphens:auto;
+}

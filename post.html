@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/base.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/prism.css"/>
+        <title>{{ post.title }} | Comfortably Numbered</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <script src="/static/prism.js"></script>
+        <!--<script src="/static/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['($','$)']]}
+            });            
+            window.addEventListener("load", function(){
+                if (window.localStorage) {
+                    window.localStorage["post-{{ post.key().id() }}"] = true;
+                    if (document.getElementById("nick")) {
+                        document.getElementById("nick").value = window.localStorage["nick"] || "";
+                    }
+                }
+                // Textarea character counter
+                if (document.getElementsByTagName("textarea")[0]) {
+                    document.getElementsByTagName("textarea")[0].addEventListener("keyup", function(){
+                        document.getElementById("charcounter").innerHTML   = "("+this.value.length + "/500)";
+                        document.getElementById("charcounter").style.color = this.value.length > 500 ? "red" : "green";
+                    }, false);
+                }
+                if (document.getElementById("deletebutton")) {
+                    document.getElementById("deletebutton").addEventListener("click", function(){
+                        if (confirm("Are you sure? This cannot be undone.")) {
+                            window.location.href = ("/deletepost?id={{ post.key().id() }}")
+                        }
+                    }, false);
+                }
+                if (document.getElementById("editbutton")) {
+                    document.getElementById("editbutton").addEventListener("click", function(){
+                        window.location.href = ("/new?edit={{ post.key().id() }}")
+                    }, false);
+                }
+                [].forEach.call(document.getElementsByClassName("commentdeletion"), function(el){
+                    el.addEventListener("click", function(){
+                        if (confirm("Are you sure?")) {
+                            console.log(el.dataset);
+                            window.location.href = ("/deletecomment?id="+el.dataset.id)
+                        }
+                    }, false);
+                });
+                document.getElementById("unreadbutton").addEventListener(
+                    "click",
+                    function() {
+                        delete localStorage["post-{{ post.key().id() }}"];
+                        this.className = "";
+                        this.innerHTML = "";
+                    }
+                );
+                if (document.getElementById("nick")) {
+                    document.getElementById("nick").addEventListener("keyup", function() {
+                        window.localStorage["nick"] = this.value;
+                    });
+                }
+            }, false);
+        </script>
+    </head>
+    <body>
+        {% include "header.html" %}
+        <div id="postlist" class="language-bash">
+            <h2>{{ post.title }}</h2>
+
+            <h4>{{ post.dateposted.strftime("%B %d, %Y") }}
+                <a class="actionbutton" href="#" id="unreadbutton">Mark as unread</a>
+            </h4>
+            <div class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-href="http://comfortablynumbered.appspot.com/post/{{post.key().id() }}"></div>
+            <br/>
+            {{ post.content }}
+
+            <p style="text-align:right;">
+            {% if admin %}
+            <a id="editbutton" class="actionbutton" href="#">Edit</a> <a id="deletebutton" class="actionbutton destructive" href="#">Delete</a>
+            {% endif %}
+            </p>
+
+            <h3 id="comments">Comments</h3>
+            <div class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-href="http://comfortablynumbered.appspot.com/post/{{post.key().id() }}"></div>
+            {% if commenterror %}
+            <p style="color:red">There was an error posting your comment. Make sure you wait 60 seconds between comments, and your comment is less than 500 characters.</p>
+            {% endif %}
+
+            {% if currentuser %}
+            <div style="color:gray; font-size:14px;">
+            <p>Respond to this post, answer a question, or share your opinions. Please be respectful. Comments cannot exceed 500 characters and two consecutive comments cannot be posted within 60 seconds of each other. To embed math with ($ \LaTeX $), delimit it with <code>(<b></b>$</code> and <code>$<b></b>)</code>. You can use Markdown to format comments.
+            </div>
+
+            <form style="margin-left:auto; margin-right:auto; width:400px;" method="post" action="/comment">
+                <input type="hidden" name="parent" value="{{ post.key().id() }}"/>
+                <div id="charcounter"><span style="color:gray;">(Max 500 characters)</span></div>
+                <textarea name="content" style="height:50px; width:300px;" placeholder="Speak out!"></textarea>
+                <input type="text" id="nick" name="nick" placeholder="Pick a nickname" style="width:300px;"/>
+                <br/>
+                <input type="submit" value="Post comment" style="width:300px;"/>
+            </form>
+            {% else %}
+                <p>You need to log in to comment.
+            {% endif %}
+            <br/><br/>
+            {% for comment in comments %}
+            <div class="comment">
+                <div class="identicon" style="float:left;">
+                    {% for i in range(25) %}
+                    <div class="identicon-cell" style="background-color:{% if comment.authormd5[i%32] in "abc" %}#{{ comment.authormd5[i:i+3] }}{% else %}{% if comment.god %}#ede275{% else %}#eee{% endif %}{% endif %}}};">&nbsp;</div>
+                    {% endfor %}
+                    <div class="clearer"></div>
+                </div>
+
+                <small style="float:right;">
+                    {{ comment.nick }} &middot;
+                    {% if admin %}
+                    {{ comment.authoremail }} &middot;
+                    {% endif %}
+                    {{ comment.dateposted.strftime("%m/%d/%y") }}
+                    
+                    {% if admin %}
+                        <a class="actionbutton commentdeletion destructive" href="#" data-id="{{ comment.key().id() }}">Delete</a>
+                    {% endif %}
+                </small>
+
+                <div class="clearer"></div>
+                <blockquote>
+                    {{ comment.content | urlize | markdown }}
+                </blockquote>
+                
+                
+            </div>
+            {% endfor %}
+
+            <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
+        {% include "footer.html" %}
+    </body>
+</html>
