@@ -1,2 +1,3 @@
 *.py[c]
 settings.py
+*-test.html
