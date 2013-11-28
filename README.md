@@ -10,3 +10,5 @@ Comfortably Numbered runs on GAE, with the following awesome libraries:
 - PyRSS2Gen for the RSS feed
 
 To run it yourself, `git clone` the repo and create the file `settings.py`, with the content `ADMINS = ["an_admin_email@addess"]`. Then run with the GAE SDK.
+
+To test a post, view `/post/?test=FILENAME`, where `FILENAME` resides in the root directory.
