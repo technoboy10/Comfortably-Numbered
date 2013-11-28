@@ -24,7 +24,8 @@ from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.api import mail
 
-ADMINS = ["***"]
+from settings import ADMINS
+
 def checkadmin():
     return users.get_current_user() and (users.get_current_user().email() in ADMINS)
 
