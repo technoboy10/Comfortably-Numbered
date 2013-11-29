@@ -86,7 +86,8 @@ class HomeHandler(webapp2.RequestHandler):
 class BlogPostHandler(webapp2.RequestHandler):
     def get(self, id):
         if (len(self.request.get("test")) != 0):
-            f = open(self.request.get("test"))
+            pass
+            f = open(self.request.get("test")+"-test.html")
             data = f.read()
             f.close()
 
@@ -103,7 +104,6 @@ class BlogPostHandler(webapp2.RequestHandler):
             post.key = a
             comments = []
         else:
-            #id = self.request.get("id")
             if id:
                 post = BlogPost.get_by_id(int(id))
                 if post is None:
@@ -261,6 +261,10 @@ class NotFound(webapp2.RequestHandler):
     def get(self):
         Throw404(self);
 
+class Robots(webapp2.RequestHandler):
+    def get(self):
+        self.redirect("/static/robots.txt");
+
 
 def Email_Digest():
     now = date.today()
@@ -285,5 +289,6 @@ app = webapp2.WSGIApplication([
     ("/deletecomment", BlogCommentDeletionHandler),
     ("/comment", CommentCreationHandler),
     ("/feed", RSSHandler),
+    ("/robots.txt", Robots),
     ("/.*", NotFound),
 ], debug=True)
