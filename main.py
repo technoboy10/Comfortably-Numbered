@@ -269,10 +269,10 @@ class Robots(webapp2.RequestHandler):
 class MailMe(InboundMailHandler):
     def receive(self, mail_message):
         print list(mail_message.bodies('text/plain'))[0][1].decode()
-        mail.send_mail(sender=mail_message.sender,
+        mail.send_mail(sender=mail_message.to,
               to=ADMINS[0],
               subject=mail_message.subject + " [forwarded from CN]",
-              body=list(mail_message.bodies('text/plain'))[0][1].decode(),
+              body=mail_message.body,
               reply_to=mail_message.sender)
 
 app = webapp2.WSGIApplication([
