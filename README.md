@@ -1,7 +1,7 @@
 Comfortably-Numbered
 ====================
 
-My blog.
+My blog: http://comfortablynumbered.appspot.com
 
 Comfortably Numbered runs on GAE, with the following awesome libraries:
 - PrismJS for Syntax Highlighting
