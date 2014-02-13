@@ -23,6 +23,7 @@ import os
 from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.api import mail
+from google.appengine.ext.webapp.mail_handlers import InboundMailHandler
 
 from settings import ADMINS
 
@@ -265,20 +266,14 @@ class Robots(webapp2.RequestHandler):
     def get(self):
         self.redirect("/static/robots.txt");
 
-
-def Email_Digest():
-    now = date.today()
-    posts = BlogPost.all()
-    posts.order("-dateposted")
-    postsresponse = posts.run(limit=10)
-
-    body = """Greetings from Comfortably Numbered! Here are this week's posts:"""
-
-    for post in postsresponse:
-        if (now - post.dateposted).days < 7:
-            body += """\n- {0}: {1}""".format(post.title, post.description)
-    body += """Have a great weekend. \n\nCheers,\nHardmath123"""
-
+class MailMe(InboundMailHandler):
+    def receive(self, mail_message):
+        print list(mail_message.bodies('text/plain'))[0][1].decode()
+        mail.send_mail(sender=mail_message.sender,
+              to=ADMINS[0],
+              subject=mail_message.subject + " [forwarded from CN]",
+              body=list(mail_message.bodies('text/plain'))[0][1].decode(),
+              reply_to=mail_message.sender)
 
 app = webapp2.WSGIApplication([
     ("/", HomeHandler),
@@ -290,5 +285,6 @@ app = webapp2.WSGIApplication([
     ("/comment", CommentCreationHandler),
     ("/feed", RSSHandler),
     ("/robots.txt", Robots),
+    MailMe.mapping(),
     ("/.*", NotFound),
 ], debug=True)

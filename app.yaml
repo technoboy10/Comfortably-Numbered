@@ -16,6 +16,10 @@ handlers:
 - url: /static
   static_dir: static
 
+- url: /_ah/mail/.+
+  script: main.app
+  login: admin
+
 - url: /.*
   script: main.app
 
@@ -25,3 +29,6 @@ libraries:
 
 - name: jinja2
   version: "2.6"
+
+inbound_services:
+- mail
