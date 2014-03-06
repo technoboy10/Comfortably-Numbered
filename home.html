@@ -2,8 +2,8 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/static/base.css"/>
-        <title>Comfortably Numbered</title>
-        <meta name="description" content="Hardmath123's blog."/>
+        <title>Tekhne</title>
+        <meta name="description" content="Technoboy10's blog."/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <script>
@@ -28,10 +28,12 @@
     <body>
         {% include "header.html" %}
         <div id="postlist">
+        <strong>The blog of technoboy10</strong>
+        <br/>
         <div>
             <a href="/feed"><img src="/static/feed-icon.png" width="15" height="15"/></a>
             &middot;
-            <div class="g-plusone" data-size="small" data-href="http://comfortablynumbered.appspot.com/"></div>
+            <div class="g-plusone" data-size="small" data-href="http://tekhne-blog.appspot.com/"></div>
         </div>
         <br/>
             {% for post in posts %}
@@ -52,17 +54,18 @@
             </div>
         
         <div id="whoami">
-            <h2><code>$(whoami)</code></h2>
+            <div class="home-info">
+            <h2><code>self.info</code></h2>
+            <p class="dropcap">I am a geek. When not playing piano or coding stuff, I can be found watching Doctor Who, Sherlock, and Chuck. Technoboy10 is usually my alias on the internet.<sup>[<a href="https://github.com/technoboy10">1</a>] [<a href="http://scratch.mit.edu/users/technoboy10">2</a>][<a href="http://technoboy10.tumblr.com">3</a>]</sup></p></div>
 
-            <p class="dropcap">I am a geek. When not staring at math problems or code, I&apos;m producing, consuming, or criticizing music. Hardmath123 is my alias on the internet.<sup>[<a href="https://github.com/Hardmath123">1</a>] [<a href="http://scratch.mit.edu/users/Hardmath123">2</a>] [<a href="http://stackoverflow.com/users/3053429/hardmath123">3</a>]</sup>
+            <div class="home-info" ><h2><code>self.location</code></h2>
+            <p class="dropcap">This blog is my homepage, and where I will occasionally post something geeky and/or meaningful. Want some light reading? Head to my <a href="http://tb10-tumblr.tk">Tumblr</a>.</p></div>
 
-            <h2><code>$(whereami)</code></h2>
-            <p>This blog is an attempt to archive math problems and other miscellaneous geekeries I come across once in a while.
-
-            <blockquote><em>I'm not tryin' to cause a big s-s-sensation,<br/><br/>I'm just bloggin' 'bout my g-g-generation.</em></blockquote>
-
-            <h2><code>ping $ME</code></h2>
-            <p>The easiest way to reach me is by posting a comment on any of the blog posts.
+            
+            <div class="home-info">
+            <h2><code>self.query</code></h2>
+            <p class="dropcap">The easiest way to reach me is by posting a comment on any of the blog posts.
+            </p></div>
         </div>
         
         {% include "footer.html" %}

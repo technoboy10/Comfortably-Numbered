@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="/static/base.css"/>
         <link rel="stylesheet" type="text/css" href="/static/prism.css"/>
-        <title>{{ post.title }} | Comfortably Numbered</title>
+        <title>{{ post.title }} | Tekhne</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <script src="/static/prism.js"></script>
@@ -71,7 +71,7 @@
             <h4>{{ post.dateposted.strftime("%B %d, %Y") }}
                 <a class="actionbutton" href="#" id="unreadbutton">Mark as unread</a>
             </h4>
-            <div class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-href="http://comfortablynumbered.appspot.com/post/{{post.key().id() }}"></div>
+            <div class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-href="http://tekhne-blog.appspot.com/post/{{post.key().id() }}"></div>
             <br/>
             {{ post.content }}
 
@@ -82,7 +82,7 @@
             </p>
 
             <h3 id="comments">Comments</h3>
-            <div class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-href="http://comfortablynumbered.appspot.com/post/{{post.key().id() }}"></div>
+            <div class="g-plusone" data-size="small" data-annotation="inline" data-width="300" data-href="http://tekhne-blog.appspot.com/post/{{post.key().id() }}"></div>
             {% if commenterror %}
             <p style="color:red">There was an error posting your comment. Make sure you wait 60 seconds between comments, and your comment is less than 500 characters.</p>
             {% endif %}
@@ -133,7 +133,6 @@
                 
             </div>
             {% endfor %}
-
             <script type="text/javascript">
           (function() {
             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -141,7 +140,6 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
           })();
         </script>
-
         {% include "footer.html" %}
     </body>
 </html>

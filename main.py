@@ -232,17 +232,17 @@ class RSSHandler(webapp2.RequestHandler):
             items.append(
                 rss.RSSItem(
                     title = post.title,
-                    link = "http://comfortablynumbered.appspot.com/post/"+str(post.key().id()),
+                    link = "http://tekhne-blog.appspot.com/post/"+str(post.key().id()),
                     description = post.content,
-                    guid = rss.Guid("http://comfortablynumbered.appspot.com/post/"+str(post.key().id())),
+                    guid = rss.Guid("http://tekhne-blog.appspot.com/post/"+str(post.key().id())),
                     pubDate = post.dateposted
                 )
             )
 
         self.response.write(rss.RSS2(
-            title = "Comfortably Numbered: the Feed.",
-            link = "http://comfortablynumbered.appspot.com",
-            description = "The latest posts from Comfortably Numbered.",
+            title = "Tekhne. ",
+            link = "http://tekhne-blog.appspot.com",
+            description = "The latest posts from Tekhne.",
 
             lastBuildDate = datetime.datetime.now(),
             items = items
@@ -271,7 +271,7 @@ class MailMe(InboundMailHandler):
         print list(mail_message.bodies('text/plain'))[0][1].decode()
         mail.send_mail(sender=mail_message.to,
               to=ADMINS[0],
-              subject=mail_message.subject + " [forwarded from CN]",
+              subject=mail_message.subject + " [forwarded from Tekhne]",
               body=mail_message.body,
               reply_to=mail_message.sender)
 
