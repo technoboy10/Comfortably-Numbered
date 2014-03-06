@@ -1,7 +1,8 @@
-Comfortably-Numbered
+Tekhne
 ====================
+My version of Hardmath123's Comfortably Numbered blog.
 
-My blog: http://comfortablynumbered.appspot.com
+My blog: http://tekhne-blog.appspot.com
 
 Comfortably Numbered runs on GAE, with the following awesome libraries:
 - PrismJS for Syntax Highlighting
